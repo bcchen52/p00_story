@@ -53,7 +53,7 @@ Vansh Saboo :: Chose Flag
 
 2022-11-02
 --------------------------------------------------------------
-<Member> :: <Thing member did.>
-<Member> :: <Thing member did.>
-<Member> :: <Thing member did.>
+ALL :: Reviewed the feedback we got for our design doc. 
+       Used the feedback to add to our design doc.
+       We became more specific in our data structure.
 ==============================================================
