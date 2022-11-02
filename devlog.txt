@@ -43,10 +43,17 @@ tales of wisdom gained...
 ==============================================================
 
 
-yyyy-mm-dd
+2022-11-01
+--------------------------------------------------------------
+ALL : Worked on the Design Doc
+Brian Chen :: Created Repo
+Weichen Liu :: Organized the Repo 
+Vansh Saboo :: Chose Flag
+==============================================================
+
+2022-11-02
 --------------------------------------------------------------
 <Member> :: <Thing member did.>
 <Member> :: <Thing member did.>
 <Member> :: <Thing member did.>
 ==============================================================
-
