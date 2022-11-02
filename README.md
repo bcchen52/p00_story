@@ -1,7 +1,7 @@
 # p00_story by AEIOU
 
 ## ROSTER
-* PROJECT MANAGER : Brian Chen
+* PROJECT MANAGER / DEVO 0 : Brian Chen
 * DEVO 1 : Weichen Liu
 * DEVO 2 : Vansh Saboo
 
