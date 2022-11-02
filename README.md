@@ -9,7 +9,7 @@
 * YES
 
 ## HOW TO LAUNCH
-* git clone git@github.com:bcchen52/p00_story.git in terminal
+* ```git clone git@github.com:bcchen52/p00_story.git``` in terminal
 * ```pip install flask``` if not done so already
-* cd into the app folder
+* ```cd app```
 * python3 __init__.py
