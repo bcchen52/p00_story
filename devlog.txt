@@ -56,4 +56,7 @@ Vansh Saboo :: Chose Flag
 ALL :: Reviewed the feedback we got for our design doc. 
        Used the feedback to add to our design doc.
        We became more specific in our data structure.
+Brian :: Uploaded edited design doc.
 ==============================================================
+
+
