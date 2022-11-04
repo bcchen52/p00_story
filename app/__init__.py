@@ -8,9 +8,13 @@ from flask import Flask, render_template, request, session, redirect, url_for
 app = Flask(__name__)
 
 @app.route("/")
-def homepage():
-    render_template(homepage.html)
+def index():
+    return render_template('homepage.html')
 
+
+@app.route("/login")
+def login():
+    return render_template('login.html')
 
 
 if __name__ == "__main__": #false if this file imported as module

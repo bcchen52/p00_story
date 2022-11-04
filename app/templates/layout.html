@@ -4,6 +4,7 @@
     {% block head %}
         <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
         <title>
+
         {% block title %}
         
         {% endblock %}
@@ -12,6 +13,11 @@
     </head>
     
     <body>
+    
+    <div class="flex-container">
+        <div><a href='/'>Homepage</a></div>
+        <div><a href='/login'>Login</a></div>
+    </div> 
     {% block body %}
     
     {% endblock %} 
