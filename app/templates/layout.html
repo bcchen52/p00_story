@@ -16,7 +16,12 @@
     
     <div class="flex-container">
         <div><a href='/'>Homepage</a></div>
+        {% if session['logged_in'] %}
         <div><a href='/login'>Login</a></div>
+        {% else %}
+        <div><a href='/logout'>Logout</a></div>
+
+        {% endif %}
     </div> 
     {% block body %}
     
