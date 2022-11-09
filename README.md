@@ -10,6 +10,7 @@
 
 ## HOW TO LAUNCH
 * ```git clone git@github.com:bcchen52/p00_story.git``` in terminal
-* ```pip install flask``` if not done so already
+* ```pip freeze > requirements.txt```
+* ```pip install requirements.txt```
 * ```cd app```
 * ```python3 __init__.py```
