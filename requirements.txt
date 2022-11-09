@@ -1,3 +1,1 @@
-FLASK
-SQLite3
-HTML
+pip install flask
