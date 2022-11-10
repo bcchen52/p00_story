@@ -27,9 +27,13 @@ c.execute(command)
 command = "insert into user values(1, 'Brian' , '123' );"      
 c.execute(command)   
 
+command = "select * from user;"
+c.execute(command)   
 users = c.fetchall()
-currentusers = users
+for x in users:
+    currentusers[x[1]] = x[2]
 
+print(currentusers)
 db.commit() 
 db.close()
 
