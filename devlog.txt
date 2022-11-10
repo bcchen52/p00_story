@@ -43,20 +43,37 @@ tales of wisdom gained...
 ==============================================================
 
 
-2022-11-01
+brianC -- 2022-11-01
 --------------------------------------------------------------
-ALL : Worked on the Design Doc
-Brian Chen :: Created Repo
-Weichen Liu :: Organized the Repo 
-Vansh Saboo :: Chose Flag
+Created repo, imported base app code
 ==============================================================
 
-2022-11-02
+weichenL -- 2022-11-01
 --------------------------------------------------------------
-ALL :: Reviewed the feedback we got for our design doc. 
-       Used the feedback to add to our design doc.
-       We became more specific in our data structure.
-Brian :: Uploaded edited design doc.
+Organized repo, created necessary files
 ==============================================================
 
+vanshS -- 2022-11-01
+--------------------------------------------------------------
+Chose and uploaded team flag
+==============================================================
 
+brianC -- 2022-11-02
+--------------------------------------------------------------
+Uploaded edited design doc.
+==============================================================
+
+weichenL -- 2022-11-03
+--------------------------------------------------------------
+Created login method with both post and get, one to open login page the other to log in.
+==============================================================
+
+brianC -- 2022-11-07
+--------------------------------------------------------------
+Within html, created a base template that is extended to other pages and is responsive depending on if logged_in.
+==============================================================
+
+vanshS, weichenL -- 2022-11-09
+--------------------------------------------------------------
+Created launch codes section of readme, added requirements.txt, worked with pipfreeze
+==============================================================
