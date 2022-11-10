@@ -1,4 +1,4 @@
-# p00_story by AEIOU
+# QUEST by AEIOU
 
 ## ROSTER
 * PROJECT MANAGER / DEVO 0 : Brian Chen
@@ -16,6 +16,6 @@
 3. Install Requirements
 * ```pip freeze > requirements.txt```
 * ```pip install requirements.txt```
-4. Running the python file
+4. Run the Flask Server
 * ```cd app```
 * ```python3 __init__.py```
