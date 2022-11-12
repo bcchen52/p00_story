@@ -96,9 +96,21 @@ def signup():
 '''
 
 
-@app.route("/signup")
+@app.route("/signup", methods=['GET', 'POST'])
 def signup():
-    return render_template('register.html')
+    if request.method == 'GET':
+        return render_template('register.html')
+    if request.method == 'POST':
+        user =  request.form.get('nusername') 
+        password = request.form.get('npassword') 
+        
+        # When someone registers, automatically log them in
+        session.permanent = True
+        session["username"] = user
+        session['logged_in'] = True
+        
+        return redirect(url_for('index'))  #redirects to home page
+    
 
 
 
