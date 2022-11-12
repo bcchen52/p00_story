@@ -114,10 +114,16 @@ def signup():
         # Add to table
         db = sqlite3.connect(DB_FILE) 
         c = db.cursor()  
-        params = (user, password)
-        command = f"insert into user values(2, ?, ?);"    # FIX TO MAKE THIS THE INDEX VARIANT   
+
+        command = "select * from user;"
+        c.execute(command)   
+        users = c.fetchall()
+
+        params = (len(users) + 1, user, password)
+
+        command = f"insert into user values(?, ?, ?);"       
         c.execute(command, params)   
-        
+    
 
         return redirect(url_for('index'))  #redirects to home page
         
