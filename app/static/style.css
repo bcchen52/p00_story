@@ -3,6 +3,10 @@
     flex-direction: column;
 }
 
+.content {
+    padding-top: 10px;
+}
+
 .user {
     margin-bottom: 0.25rem;
 }

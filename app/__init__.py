@@ -96,7 +96,9 @@ def signup():
 '''
 
 
-
+@app.route("/signup")
+def signup():
+    return render_template('register.html')
 
 
 

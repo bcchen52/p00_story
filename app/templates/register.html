@@ -1,1 +1,18 @@
 {% extends "layout.html" %}
+
+{% block body %}
+    <h3>
+      Create your account below
+    </h3>
+
+    <form action="/signup" method="POST">
+      <div class = "flex-container">
+      <div class = "user"> NEW USERNAME: <input type="text" name="username"> </div>
+      <div class = "pass"> NEW PASSWORD: <input type="text" name="password"> </div>
+      <br>
+      <div> <input type="submit" name="sub1"> </div>
+      </div>
+    </form>
+    {{ error }}
+    <br>
+{% endblock %}
