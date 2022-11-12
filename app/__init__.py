@@ -42,6 +42,7 @@ db.close()
 @app.route("/")
 def index():
     return render_template('homepage.html')
+    
 
 
 @app.route("/login", methods=['GET', 'POST'])
@@ -101,15 +102,25 @@ def signup():
     if request.method == 'GET':
         return render_template('register.html')
     if request.method == 'POST':
-        user =  request.form.get('nusername') 
-        password = request.form.get('npassword') 
+
+        user =  str( request.form.get('nusername') )
+        password = str( request.form.get('npassword') )
         
         # When someone registers, automatically log them in
         session.permanent = True
         session["username"] = user
         session['logged_in'] = True
+
+        # Add to table
+        db = sqlite3.connect(DB_FILE) 
+        c = db.cursor()  
+        params = (user, password)
+        command = f"insert into user values(2, ?, ?);"    # FIX TO MAKE THIS THE INDEX VARIANT   
+        c.execute(command, params)   
         
+
         return redirect(url_for('index'))  #redirects to home page
+        
     
 
 
