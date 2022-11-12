@@ -2,12 +2,16 @@
 
 {% block body %}
     <h3>
-      Enter your username below to proceed.
+      Enter Login information below to proceed.
     </h3>
+
     <form action="/login" method="POST">
-      <input type="text" name="username">
-      <input type="text" name="password">
-      <input type="submit" name="sub1">
+      <div class = "flex-container">
+      <div class = "user"> <input type="text" name="username"> </div>
+      <div class = "pass"> <input type="text" name="password"> </div>
+      <br>
+      <div> <input type="submit" name="sub1"> </div>
+      </div>
     </form>
     {{ error }}
     <br>
