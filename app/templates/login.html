@@ -7,13 +7,14 @@
 
     <form action="/login" method="POST">
       <div class = "flex-container">
-      <div class = "user"> USERNAME: <input type="text" name="username"> </div>
-      <div class = "pass"> PASSWORD: <input type="text" name="password"> </div>
+      <div id = "user"> USERNAME: <input type="text" name="username"> </div>
+      <div id = "pass"> PASSWORD: <input type="text" name="password"> </div>
       <br>
       <div> <input type="submit" name="sub1"> </div>
       </div>
     </form>
     {{ error }}
+    <br>
     <div><a href='/signup'>Click Here to Create an account</a></div>
     <br>
 {% endblock %}
