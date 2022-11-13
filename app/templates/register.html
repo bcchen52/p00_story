@@ -8,6 +8,12 @@
   Register     
 {% endblock %}
 
+{% block story_dropdown %}
+    {% for x in stories %}
+    <a href="/story/{{x}}">{{ x }}</a>
+    {% endfor %}
+{% endblock %}
+
 {% block body %}
     <h3>
       Create your account below

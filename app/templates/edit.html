@@ -1,5 +1,28 @@
 {% extends "layout.html" %}
 
+{% block head %}
+{% if not new %}
+    Add to {{ title }}
+{% else %}
+    Create New Story
+{% endif %}
+{% endblock %}
+
+
+{% block title %}
+{% if not new %}
+    Add to {{ title }}
+{% else %}
+    Create New Story
+{% endif %}
+{% endblock %}
+
+{% block story_dropdown %}
+    {% for x in stories %}
+    <a href="/story/{{x}}">{{ x }}</a>
+    {% endfor %}
+{% endblock %}
+
 {% block body %}
 {% if not new %}
     <h1>{{ title }}</h1>
@@ -22,6 +45,8 @@
 
 
 {% endif %}
+
+{{ error }}
 
 
 {% endblock %}

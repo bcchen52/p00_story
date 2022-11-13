@@ -102,3 +102,8 @@ brianC -- 2022-11-13 3:55
 --------------------------------------------------------------
 Created flask method for creating new story+editing previous story.
 ==============================================================
+
+brianC -- 2022-11-13 4:15
+--------------------------------------------------------------
+Made stories dropdown visible on all pages, error exceptions for creating new stories.
+==============================================================

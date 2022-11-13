@@ -85,7 +85,8 @@ def index():
 @app.route("/login", methods=['GET', 'POST'])
 def login():
     if request.method == 'GET':
-        return render_template('login.html')
+        return render_template('login.html',
+        stories=list(stories))
     if request.method == 'POST':
         user = request.form.get('username')
         password = request.form.get('password')
@@ -95,12 +96,14 @@ def login():
         if user not in currentusers.keys(): #check if user exists
             error = "User DNE"
             return render_template('login.html',
-            error=error)
+            error=error,
+            stories=list(stories))
 
         if password != currentusers[user]: #check if password matches user
             error = "Wrong Password"
             return render_template('login.html',
-            error=error)
+            error=error,
+            stories=list(stories))
 
         session.permanent = True
         session["username"] = user
@@ -113,7 +116,8 @@ def login():
 @app.route("/signup", methods=['GET', 'POST'])
 def signup():
     if request.method == 'GET':
-        return render_template('register.html')
+        return render_template('register.html',
+        stories=list(stories))
 
     if request.method == 'POST':
 
@@ -124,12 +128,14 @@ def signup():
         if user in currentusers.keys():
             error = "User already exists"
             return render_template('register.html',
-            error=error)
+            error=error,
+            stories=list(stories))
 
         if password != password2:
             error = "Passwords don't match"
             return render_template('register.html',
-            error=error)
+            error=error,
+            stories=list(stories))
 
         # Add to table
         db = sqlite3.connect(DB_FILE) 
@@ -168,7 +174,8 @@ def story(title):
         
         return render_template('story.html',
             title=title,
-            content=content
+            content=content,
+            stories=list(stories)
             )
 
     if request.method == 'POST':
@@ -197,12 +204,14 @@ def edit():
             return render_template('edit.html',
                 new=False,
                 title=title,
-                content=content
+                content=content,
+                stories=list(stories)
                 )
 
         else: #new story
             return render_template('edit.html',
                 new=True,
+                stories=list(stories)
                 )
 
     if request.method == 'POST':
@@ -226,11 +235,24 @@ def edit():
             content = oldcontent
             #can add spot for user id
         else: 
-            command = f'''select * from user where username = "{session['username']}";'''
+            command = f'''select * from story where title = "{title}";'''
             c.execute(command)   
-            user = c.fetchone()
-            user_id = user[0]
-            id = len(stories)
+            story = c.fetchone()
+            
+            if story is None:
+                command = f'''select * from user where username = "{session['username']}";'''
+                c.execute(command)   
+                user = c.fetchone()
+                user_id = user[0]
+                id = len(stories)
+
+            else:
+                error = "Story with that title already exists"
+                return render_template('edit.html',
+                    new=True,
+                    error=error,
+                    stories=list(stories)
+                )
 
 
         command = f'''replace into story values({id},{user_id},"{title}","{content}");'''
