@@ -1,1 +1,27 @@
 {% extends "layout.html" %}
+
+{% block body %}
+{% if not new %}
+    <h1>{{ title }}</h1>
+    {{ content }}
+    <form action="/edit" method="POST" value="">
+        Add to the story: <input type="text" name="content">
+        <input type="hidden" name="new" id="new" value="False">
+        <input type="hidden" name="title" id="title" value="{{ title }}">
+        <input type="submit" value="Commit Changes">
+    </form>
+
+{% else %}
+
+    <form action="/edit" method="POST">
+        Title: <input type="text" name="title">
+        Content: <input type="text" name="content">
+        <input type="hidden" name="new" id="new" value="True">
+        <input type="submit" value="Create">
+    </form>
+
+
+{% endif %}
+
+
+{% endblock %}

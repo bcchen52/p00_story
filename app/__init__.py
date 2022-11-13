@@ -11,7 +11,7 @@ app = Flask(__name__)
 app.secret_key = os.urandom(12)
 
 currentusers = {}
-stories = []
+stories = set()
 
 DB_FILE="discobandit.db"
 
@@ -27,15 +27,18 @@ c.execute(command)
 command = "create table user(id int, username text, password text);"      
 c.execute(command)   
 
-command = "create table story(id int, user_id int, title text, content text);"      
+command = "create table story(id int primary key, user_id int, title text, content text);"      
 c.execute(command)   
 
-command = f'''insert into story values(1, 1,"hello","welcome back to my asmr");''' 
+command = f'''insert into story values(0, 1,"hello","welcome back to my asmr");''' 
 c.execute(command)   
+
+command = f'''insert into user values(0, "b", "123");''' 
+c.execute(command)  
 
 
 db.commit() 
-
+db.close()
 
 
 def update_users():
@@ -49,7 +52,12 @@ def update_users():
     #print(currentusers)
     db.close()
 
+update_users()
+
 # our html has a dropdown for current stories, and to list them we need to fill our list
+# all our html files extend layout.html, but we cannot give it a variable if we do not call it
+# with render_template where we add a parameter, so we need to add stories as a parameter
+# everytime we render an html file
 def update_stories():
     db = sqlite3.connect(DB_FILE) 
     c = db.cursor()   
@@ -57,8 +65,8 @@ def update_stories():
     c.execute(command)   
     titles = c.fetchall()
     for x in titles:
-        stories.append(x[0])
-    #print(stories)
+        stories.add(x[0])
+    print(stories)
     db.close()
 
 update_stories()
@@ -70,7 +78,7 @@ update_stories()
 @app.route("/")
 def index():
     return render_template('homepage.html',
-    stories=stories)
+    stories=list(stories))
     
 
 
@@ -142,30 +150,100 @@ def signup():
         
 @app.route("/story/<title>", methods=['GET','POST'])
 def story(title):
-    
-    db = sqlite3.connect(DB_FILE) 
-    c = db.cursor() 
+    if request.method == 'GET':
+        db = sqlite3.connect(DB_FILE) 
+        c = db.cursor() 
 
-    command = f'''select * from story where title = "{title}";'''
-    c.execute(command)   
-    story = c.fetchone()
+        command = f'''select * from story where title = "{title}";'''
+        c.execute(command)   
+        story = c.fetchone()
 
-    user_id = story[1]
-    title = story[2]
-    content = story[3]
+        user_id = story[1]
+        title = story[2]
+        content = story[3]
 
-    print(content)
+        print(content)
+
+        db.close()
+        
+        return render_template('story.html',
+            title=title,
+            content=content
+            )
+
+    if request.method == 'POST':
+        return redirect(url_for('edit'))
+
+@app.route("/edit", methods=['GET','POST'])
+def edit():
+    if request.method == 'GET':
+        title = request.args.get('title')
+        #if edit is accessed from a story page, the form will have an input named "title"
+        #if title is none, it means it is not accessed from the button on a story page
+        
+        if title != None: #edit story
+
+            db = sqlite3.connect(DB_FILE) 
+            c = db.cursor() 
+
+            command = f'''select * from story where title = "{title}";'''
+            c.execute(command)   
+            story = c.fetchone()
+
+            content = story[3]
+
+            db.close()
+
+            return render_template('edit.html',
+                new=False,
+                title=title,
+                content=content
+                )
+
+        else: #new story
+            return render_template('edit.html',
+                new=True,
+                )
+
+    if request.method == 'POST':
+        new = request.form.get('new')
+        title = request.form.get('title')
+        content = request.form.get('content')
+
+        db = sqlite3.connect(DB_FILE) 
+        c = db.cursor() 
+
+        if new == "False":
+            command = f'''select * from story where title = "{title}";'''
+            c.execute(command)   
+            story = c.fetchone()
+
+            id = story[0]
+            user_id = story[1]
+            oldcontent = story[3]
+
+            oldcontent += content
+            content = oldcontent
+            #can add spot for user id
+        else: 
+            command = f'''select * from user where username = "{session['username']}";'''
+            c.execute(command)   
+            user = c.fetchone()
+            user_id = user[0]
+            id = len(stories)
 
 
+        command = f'''replace into story values({id},{user_id},"{title}","{content}");'''
+        c.execute(command)   
 
-    db.close()
-    
-    
+        db.commit() 
+        db.close()
 
-    return render_template('story.html',
-        title=title,
-        content=content
-        )
+        update_stories()
+            
+        return redirect(url_for('index'))
+
+
 
 
 

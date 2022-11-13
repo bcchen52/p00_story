@@ -97,3 +97,8 @@ Added error exceptions for registering.
 Flask method for displaying different stories and story sqlite table.
 Created a dropdown for stories and edited link format in layout.html, added headers/titles to each page.
 ==============================================================
+
+brianC -- 2022-11-13 3:55
+--------------------------------------------------------------
+Created flask method for creating new story+editing previous story.
+==============================================================

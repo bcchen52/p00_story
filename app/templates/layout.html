@@ -28,10 +28,12 @@
 
             {% if session['logged_in'] %}
             <div class = "item"><a href='/logout'>Logout</a></div>
-            <div class = "item"><a href='/'>New Story</a></div>
+            <div class = "item"><a href='/edit'>New Story</a></div>
             {% else %}
             <div class = "item"><a href='/login'>Login</a></div>
             <div class = "item"><a href='/'>Register</a></div>
+
+            <div class = "item"><a href='/edit'>New Story</a></div>
             {% endif %}
         </div> 
     </head>

@@ -10,8 +10,13 @@
 
 
 {% block body %}
-    {{ title }}
-    123
+    <h2>{{ title }}</h2>
     {{ content }}
+
+    <form action="/edit" method="GET">
+        <input type="hidden" name="title" id="title" value="{{ title }}">
+        <input type="submit" value="Edit">
+    </form>
+
 {% endblock %} 
 
