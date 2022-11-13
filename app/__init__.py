@@ -8,10 +8,10 @@ import os, sqlite3
 
 app = Flask(__name__)
 
-
 app.secret_key = os.urandom(12)
 
 currentusers = {}
+stories = []
 
 DB_FILE="discobandit.db"
 
@@ -21,27 +21,56 @@ c = db.cursor()
 command = "drop table if exists user;"         
 c.execute(command)
 
+command = "drop table if exists story;"         
+c.execute(command)
+
 command = "create table user(id int, username text, password text);"      
 c.execute(command)   
 
-command = "insert into user values(1, 'Brian' , '123' );"      
+command = "create table story(id int, user_id int, title text, content text);"      
 c.execute(command)   
 
-command = "select * from user;"
+command = f'''insert into story values(1, 1,"hello","welcome back to my asmr");''' 
 c.execute(command)   
-users = c.fetchall()
-for x in users:
-    currentusers[x[1]] = x[2]
 
-print(currentusers)
+
 db.commit() 
-db.close()
+
+
+
+def update_users():
+    db = sqlite3.connect(DB_FILE) 
+    c = db.cursor()   
+    command = "select * from user;"
+    c.execute(command)   
+    users = c.fetchall()
+    for x in users:
+        currentusers[x[1]] = x[2]
+    #print(currentusers)
+    db.close()
+
+# our html has a dropdown for current stories, and to list them we need to fill our list
+def update_stories():
+    db = sqlite3.connect(DB_FILE) 
+    c = db.cursor()   
+    command = "select title from story;"
+    c.execute(command)   
+    titles = c.fetchall()
+    for x in titles:
+        stories.append(x[0])
+    #print(stories)
+    db.close()
+
+update_stories()
+    
+
 
 
 
 @app.route("/")
 def index():
-    return render_template('homepage.html')
+    return render_template('homepage.html',
+    stories=stories)
     
 
 
@@ -54,80 +83,89 @@ def login():
         password = request.form.get('password')
         print(f"User entered: {user}")
         print(f"Password entered: {password}")
+
         if user not in currentusers.keys(): #check if user exists
             error = "User DNE"
             return render_template('login.html',
             error=error)
+
         if password != currentusers[user]: #check if password matches user
             error = "Wrong Password"
             return render_template('login.html',
             error=error)
+
         session.permanent = True
         session["username"] = user
         session['logged_in'] = True
+
         return redirect(url_for('index'))  #redirects to home page
 
-
-
-'''
-@app.route("/signup", methods=['GET','POST'])
-def signup():
-    if request.method == 'GET': #if opening this route
-        return render_template('signup.html') 
-    if request.method == 'POST': #if submitting information
-        usernames = users.keys()
-        newuser = request.form.get('username') #when using "POST" request.args DNE
-        password = request.form.get('password')
-        confirmation = request.form.get('confirmation')
-        if newuser in usernames: #check if user exists
-            error = "Username already exists"
-            return render_template('signup.html', 
-                error=error) #redirects back to page with error
-        if password != confirmation: 
-            error = "PASSWORDS DO NOT MATCH!!!!!!"
-            return render_template('signup.html', 
-                error=error)
-
-        with open('users.csv','a') as csvfile: #if newuser works, add to csv
-            csv_writer = csv.writer(csvfile)
-            csv_writer.writerow([newuser,password])
-        get_users() #update local dict to match csv
-
-        return render_template('login.html')
-'''
 
 
 @app.route("/signup", methods=['GET', 'POST'])
 def signup():
     if request.method == 'GET':
         return render_template('register.html')
+
     if request.method == 'POST':
 
-        user =  str( request.form.get('nusername') )
-        password = str( request.form.get('npassword') )
+        user =  str( request.form.get('username') )
+        password = str( request.form.get('password') )
+        password2 = str( request.form.get('password2') )
         
-        # When someone registers, automatically log them in
-        session.permanent = True
-        session["username"] = user
-        session['logged_in'] = True
+        if user in currentusers.keys():
+            error = "User already exists"
+            return render_template('register.html',
+            error=error)
+
+        if password != password2:
+            error = "Passwords don't match"
+            return render_template('register.html',
+            error=error)
 
         # Add to table
         db = sqlite3.connect(DB_FILE) 
         c = db.cursor()  
 
-        command = "select * from user;"
-        c.execute(command)   
-        users = c.fetchall()
+        params = (len(currentusers.keys()), user, password)
 
-        params = (len(users) + 1, user, password)
-
+        print(params)
         command = f"insert into user values(?, ?, ?);"       
         c.execute(command, params)   
+
+        db.commit() 
+        db.close()
+
+        update_users()
+
+        return redirect(url_for('login'))  #redirects to home page
+        
+@app.route("/story/<title>", methods=['GET','POST'])
+def story(title):
+    
+    db = sqlite3.connect(DB_FILE) 
+    c = db.cursor() 
+
+    command = f'''select * from story where title = "{title}";'''
+    c.execute(command)   
+    story = c.fetchone()
+
+    user_id = story[1]
+    title = story[2]
+    content = story[3]
+
+    print(content)
+
+
+
+    db.close()
+    
     
 
-        return redirect(url_for('index'))  #redirects to home page
-        
-    
+    return render_template('story.html',
+        title=title,
+        content=content
+        )
 
 
 

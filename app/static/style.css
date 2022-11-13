@@ -1,6 +1,39 @@
+h1 {
+    text-align: center;
+}
+
+
+.block {
+    display: block;
+    width: 100%;
+    border: none;
+}
+
+.dropdown {
+    display: inline-block;
+    position: relative; /* allows each element in dropdown to stack on top of each other */
+}
+
+.dropdown-content {
+    display: none; /* makes dropdown content not visible */
+    position: absolute; /* prevents dropdown from changing the rest of the layout */
+  }
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
 .flex-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+}
+
+.item {
+    flex-grow:1;
+    text-align: center;
 }
 
 .content {

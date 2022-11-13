@@ -1,17 +1,25 @@
 {% extends "layout.html" %}
 
+{% block head %}
+  Login  
+{% endblock %}
+
+{% block title %}
+  Login     
+{% endblock %}
+
+
 {% block body %}
     <h3>
       Enter Login information below to proceed.
     </h3>
 
     <form action="/login" method="POST">
-      <div class = "flex-container">
+
       <div id = "user"> USERNAME: <input type="text" name="username"> </div>
       <div id = "pass"> PASSWORD: <input type="text" name="password"> </div>
       <br>
       <div> <input type="submit" name="sub1"> </div>
-      </div>
     </form>
     {{ error }}
     <br>

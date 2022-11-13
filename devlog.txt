@@ -75,15 +75,25 @@ Within html, created a base template that is extended to other pages and is resp
 
 vanshS, weichenL -- 2022-11-09 9:26
 --------------------------------------------------------------
-Created launch codes section of readme, added requirements.txt, worked with pipfreeze
+Created launch codes section of readme and worked with pipfreeze.
+Added requirements.txt.
 ==============================================================
 
 weichenL -- 2022-11-11 23:30
 --------------------------------------------------------------
-Worked on css, signup html page
+Worked on css, set up flex-box for links.
+Signup html page.
 ==============================================================
 
 vanshS -- 2022-11-12 17:00
 --------------------------------------------------------------
-Created signup/register method in flask that interacts with user table and edited register html.
+Created signup/register method in flask that interacts with user sqlite table.
+Edited Signup to create new users html.
+==============================================================
+
+brianC -- 2022-11-13 2:39
+--------------------------------------------------------------
+Added error exceptions for registering.
+Flask method for displaying different stories and story sqlite table.
+Created a dropdown for stories and edited link format in layout.html, added headers/titles to each page.
 ==============================================================

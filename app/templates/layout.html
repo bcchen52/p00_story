@@ -1,27 +1,42 @@
 <!doctype html>
 <html>
     <head>
-    {% block head %}
-        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-        <title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> 
+        
+        <h1>
+        {% block head %}
+        {% endblock %}
+        </h1>
 
+        <title>
         {% block title %}
         
         {% endblock %}
         </title>
-    {% endblock %}
+        <div class="flex-container">
+            <div class = "item"><a href='/'>Homepage</a></div>
+
+            <div class="item">
+                <div class="dropdown">
+                    <button type="button" class="block">Stories</button>
+                    <div class="dropdown-content">
+                    {% block story_dropdown %}
+                    {% endblock %}
+                    </div>
+                </div>
+            </div>
+
+            {% if session['logged_in'] %}
+            <div class = "item"><a href='/logout'>Logout</a></div>
+            <div class = "item"><a href='/'>New Story</a></div>
+            {% else %}
+            <div class = "item"><a href='/login'>Login</a></div>
+            <div class = "item"><a href='/'>Register</a></div>
+            {% endif %}
+        </div> 
     </head>
     
     <body>
-    
-    <div class="flex-container">
-        <div><a href='/'>Homepage</a></div>
-        {% if session['logged_in'] %}
-        <div><a href='/logout'>Logout</a></div>
-        {% else %}
-        <div><a href='/login'>Login</a></div>
-        {% endif %}
-    </div> 
     {% block body %}
     
     {% endblock %} 
