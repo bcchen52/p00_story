@@ -37,7 +37,7 @@
     <form action="/edit" method="POST">
         <br>
         <label for="content"><h3>Add to to the story below...</h3></label>
-        <textarea class="content" name="content" placeholder="Type here..." cols="100" rows="20"></textarea>
+        <textarea class="content" name="content" placeholder="Type here..." cols="100" rows="20" required></textarea>
         <input type="hidden" name="new" id="new" value="False">
         <input type="hidden" name="title" id="title" value="{{ title }}">
         <br>
@@ -49,9 +49,9 @@
     <h3>The name of your story must be UNIQUE</h3>
     <form action="/edit" method="POST">
         <label for="title"><h3>Name your story...</h3></label>
-        <textarea class="content" name="title" placeholder="Title here..." cols="100" rows="1"></textarea>
+        <textarea class="content" name="title" placeholder="Title here..." cols="100" rows="1" required></textarea>
         <label for="content"><h3>Start your story below...</h3></label>
-        <textarea class="content" name="content" placeholder="Type here..." cols="100" rows="20"></textarea>
+        <textarea class="content" name="content" placeholder="Type here..." cols="100" rows="20" required></textarea>
         <input type="hidden" name="new" id="new" value="True">
         <br>
         <input type="submit" value="Create">
