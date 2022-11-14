@@ -10,7 +10,11 @@
 
 {% block story_dropdown %}
     {% for x in stories %}
-    <a href="/story/{{x}}"><div class="btn">{{ x }}</div></a>
+    <a href="/story/{{x}}">
+        <div class="item">
+            <div class="btn">{{ x }}</div>
+        </div>
+    </a>
     {% endfor %}
 {% endblock %}
 
@@ -18,11 +22,22 @@
 {% block body %}
 
 <h2>WELCOME to QUEST by AEIOU!</h2>
+<h3>
+    This website is used to share stories!!!(wow). Our rules are...
+    <h4>
+        - You can only add to a story, you cannot delete.
+    </h4>
+    <h4>
+        - You can only make an edit once, and if you create a story you cannot add on after it is made.
+    </h4>
+</h3>
 
 {% if session["logged_in"] %}
 <h3>Hello {{session["username"]}}, below are all stories you've added or edited to.</h3>
 {% for x in watchlist %}
-    <div class="btn"><a href="/story/{{x}}">{{ x }}</a></div>
+<div class="watchlist">
+    <div class="item"><a href="/story/{{x}}"><div class="btn">{{ x }}</div></a></div>
+</div>
 {% endfor %}
 {% endif %}
 

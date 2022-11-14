@@ -8,9 +8,13 @@
     {{ title }}        
 {% endblock %}
 
-{% block story_dropdown %}
+{% block story_dropdown %}  
     {% for x in stories %}
-    <a href="/story/{{x}}"><div class="btn">{{ x }}</div></a>
+    <a href="/story/{{x}}">
+        <div class="item">
+            <div class="btn">{{ x }}</div>
+        </div>
+    </a>
     {% endfor %}
 {% endblock %}
 
@@ -22,7 +26,7 @@
     
     {% if session['logged_in'] %}
         {% if edited %}
-        You've already edited this story.
+        <h4>You've already edited this story.</h4>
         {% else %}
         <form action="/edit" method="GET">
             <input type="hidden" name="title" id="title" value="{{ title }}">

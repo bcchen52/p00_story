@@ -120,3 +120,8 @@ Added "edited" column to users to keep status of the stories each user has edite
 Users can now only edit/create a story once.
 Watchlist of edited stories on homepage.
 ==============================================================
+
+brianC -- 2022-11-13 22:30
+--------------------------------------------------------------
+Finalized CSS and html formatting.
+==============================================================

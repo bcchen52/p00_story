@@ -33,17 +33,13 @@ command = "create table user(id int primary key, username text, password text, e
 c.execute(command)   
 
 command = "create table story(id int primary key, user_id int, title text, content text, recentuser_id int);"      
-c.execute(command)   
+c.execute(command)     
 
-command = "create table editstory(story_id int);"      
-c.execute(command)   
+#command = f'''insert into story values(0, 0,"hello","welcome back to my asmr",0);''' 
+#c.execute(command)   
 
-command = f'''insert into story values(0, 0,"hello","welcome back to my asmr",0);''' 
-c.execute(command)   
-
-command = f'''insert into user values(0, "b", "123","0");''' 
-c.execute(command)  
-
+#command = f'''insert into user values(0, "b", "123","0");''' 
+#c.execute(command) 
 
 db.commit() 
 db.close()

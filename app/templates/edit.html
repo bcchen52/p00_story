@@ -19,27 +19,39 @@
 
 {% block story_dropdown %}
     {% for x in stories %}
-    <a href="/story/{{x}}"><div class="btn">{{ x }}</div></a>
+    <a href="/story/{{x}}">
+        <div class="item">
+            <div class="btn">{{ x }}</div>
+        </div>
+    </a>
     {% endfor %}
 {% endblock %}
 
 {% block body %}
 {% if not new %}
     <h1>{{ title }}</h1>
-    {{ content }}
-    <form action="/edit" method="POST" value="">
-        Add to the story: <input type="text" name="content">
+    <p>{{ content }}</p>
+    
+    <form action="/edit" method="POST">
+        <br>
+        <label for="content"><h3>Add to to the story below...</h3></label>
+        <textarea class="content" name="content" placeholder="Type here..." cols="100" rows="20"></textarea>
         <input type="hidden" name="new" id="new" value="False">
         <input type="hidden" name="title" id="title" value="{{ title }}">
+        <br>
         <input type="submit" value="Commit Changes">
     </form>
 
 {% else %}
-
+    <h2>Create your own Story!</h2>
+    <h3>The name of your story must be UNIQUE</h3>
     <form action="/edit" method="POST">
-        Title: <input type="text" name="title">
-        Content: <input type="text" name="content">
+        <label for="title"><h3>Name your story...</h3></label>
+        <textarea class="content" name="title" placeholder="Title here..." cols="100" rows="1"></textarea>
+        <label for="content"><h3>Start your story below...</h3></label>
+        <textarea class="content" name="content" placeholder="Type here..." cols="100" rows="20"></textarea>
         <input type="hidden" name="new" id="new" value="True">
+        <br>
         <input type="submit" value="Create">
     </form>
 

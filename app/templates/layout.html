@@ -13,8 +13,24 @@
         
         {% endblock %}
         </title>
+        
+        {% if session['logged_in'] %}
+        <h3>
+            Logged in as {{ session["username"] }}
+        </h3>
+        {% endif %}
+
         <div class="flex-container">
             <div class = "item"><a href='/'><div class = "btn">Homepage</div></a></div>
+
+            {% if session['logged_in'] %}
+            <div class = "item"><a href='/logout'><div class = "btn">Logout</div></a></div>
+            <div class = "item"><a href='/edit'><div class = "btn">New Story</div></a></div>
+            {% else %}
+            <div class = "item"><a href='/login'><div class = "btn">Login</div></a></div>
+            <div class = "item"><a href='/signup'><div class = "btn">Register</div></a></div>
+
+            {% endif %}
 
             <div class="item">
 
@@ -31,15 +47,6 @@
                 </div>
 
             </div>
-
-            {% if session['logged_in'] %}
-            <div class = "item"><a href='/logout'><div class = "btn">Logout</div></a></div>
-            <div class = "item"><a href='/edit'><div class = "btn">New Story</div></a></div>
-            {% else %}
-            <div class = "item"><a href='/login'><div class = "btn">Login</div></a></div>
-            <div class = "item"><a href='/signup'><div class = "btn">Register</div></a></div>
-
-            {% endif %}
         </div> 
     </head>
     

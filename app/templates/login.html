@@ -10,7 +10,11 @@
 
 {% block story_dropdown %}
     {% for x in stories %}
-    <a href="/story/{{x}}"><div class="btn">{{ x }}</div></a>
+    <a href="/story/{{x}}">
+      <div class="item">
+          <div class="btn">{{ x }}</div>
+      </div>
+    </a>
     {% endfor %}
 {% endblock %}
 
@@ -18,16 +22,14 @@
     <h3>
       Enter Login information below to proceed.
     </h3>
-
+    
     <form action="/login" method="POST">
-
-      <div id = "user"> USERNAME: <input type="text" name="username"> </div>
-      <div id = "pass"> PASSWORD: <input type="text" name="password"> </div>
+      Username: <input type="text" class="content" name="username" placeholder="Enter username" required>
       <br>
-      <div> <input type="submit"> </div>
+      Password: <input type="password" class="content" name="password" placeholder="Enter password" required> 
+      <br>
+      <input type="submit"> 
     </form>
-    {{ error }}
-    <br>
-    <div><a href='/signup'>Click here to create an account</a></div>
-    <br>
+    <p>{{ error }}</p>
+    <p>No account? Click <a href='/signup'>here</a></p>
 {% endblock %}

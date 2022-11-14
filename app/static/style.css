@@ -1,6 +1,26 @@
-h1 {
+body {
     text-align: center;
+    background-color: #caf0f8;
 }
+
+h1 {
+    font-size:40px;
+}
+
+h2 {
+    font-size:30px;
+}
+
+h3 {
+    font-size:20px;
+}
+
+p {
+    font-size:20px;
+    white-space: pre-wrap;
+}
+
+
 
 .block{
     display: flex;
@@ -11,13 +31,19 @@ h1 {
     width:100%;
     height:100%;
     padding: 15px 0px;
+    font-size:30px;
 }
 
+.watchlist {
+    margin-left: auto;
+    margin-right: auto;
+    width:50%;
+}
 
 .dropdown {
     display: inline-block;
     position: relative; /* allows each element in dropdown to stack on top of each other */
-    background-color:aliceblue;
+    background-color: #90e0ef;
     width:100%;
     height:100%;
 }
@@ -26,12 +52,9 @@ h1 {
     display: none; /* makes dropdown content not visible */
     position: absolute; /* prevents dropdown from changing the rest of the layout */
     z-index: 1;
-    background-color: aliceblue;
+    background-color: #90e0ef;
 }
 
-.dropdown-content:hover {
-    background-color:aqua;
-}
 
 .dropdown-content a {
     display: block; /*prevents items from overlap(was a very serious issue </3) */
@@ -43,7 +66,7 @@ h1 {
 }
 
 .dropdown:hover {
-    background-color:aqua;
+    background-color:#5fa8d3;
 }
 
 .flex-container {
@@ -54,14 +77,16 @@ h1 {
 }
 
 .item {
+    border-style: solid;
     flex-grow: 1;
     height:100%;
     text-align: center;
-    background-color: aliceblue;
+    background-color: #90e0ef;
 }
 
+
 .item:hover {
-    background-color:aqua;
+    background-color:#5fa8d3;
 }
 
 .item a:link {
@@ -83,7 +108,7 @@ h1 {
 }
 
 .content {
-    padding-top: 10px;
+    margin: 10px;
 }
 
 #user {
