@@ -112,3 +112,11 @@ brianC -- 2022-11-13 19:35
 --------------------------------------------------------------
 Changed links so entire div is clickable and hoverable, incorporated last user who edited into story. 
 ==============================================================
+
+
+brianC -- 2022-11-13 21:27
+--------------------------------------------------------------
+Added "edited" column to users to keep status of the stories each user has edited.
+Users can now only edit/create a story once.
+Watchlist of edited stories on homepage.
+==============================================================

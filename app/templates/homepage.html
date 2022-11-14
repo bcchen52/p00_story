@@ -17,9 +17,13 @@
 
 {% block body %}
 
-<div class = content> 
-    This is the homepage of our project. You will be able to navigate to the rest of webpages through here.
-</div>
+<h2>WELCOME to QUEST by AEIOU!</h2>
 
+{% if session["logged_in"] %}
+<h3>Hello {{session["username"]}}, below are all stories you've added or edited to.</h3>
+{% for x in watchlist %}
+    <div class="btn"><a href="/story/{{x}}">{{ x }}</a></div>
+{% endfor %}
+{% endif %}
 
 {% endblock %} 

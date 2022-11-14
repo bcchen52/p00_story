@@ -21,10 +21,14 @@
     <p>{{ content }}</p>
     
     {% if session['logged_in'] %}
-    <form action="/edit" method="GET">
-        <input type="hidden" name="title" id="title" value="{{ title }}">
-        <input type="submit" value="Edit">
-    </form>
+        {% if edited %}
+        You've already edited this story.
+        {% else %}
+        <form action="/edit" method="GET">
+            <input type="hidden" name="title" id="title" value="{{ title }}">
+            <input type="submit" value="Edit">
+        </form>
+        {% endif %}
     {% endif %}
 
 {% endblock %} 

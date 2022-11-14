@@ -26,8 +26,12 @@ h1 {
     display: none; /* makes dropdown content not visible */
     position: absolute; /* prevents dropdown from changing the rest of the layout */
     z-index: 1;
-    background-color: antiquewhite;
-  }
+    background-color: aliceblue;
+}
+
+.dropdown-content:hover {
+    background-color:aqua;
+}
 
 .dropdown-content a {
     display: block; /*prevents items from overlap(was a very serious issue </3) */
@@ -38,6 +42,9 @@ h1 {
     width:100%
 }
 
+.dropdown:hover {
+    background-color:aqua;
+}
 
 .flex-container {
     display: flex;
