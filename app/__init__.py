@@ -68,8 +68,11 @@ def update_stories():
     command = "select title from story;"
     c.execute(command)   
     titles = c.fetchall()
+    print(titles)
+    print(stories)
     for x in titles:
         stories.add(x[0])
+    print(stories)
     db.close()
 
 update_stories()
@@ -119,6 +122,7 @@ def grab_username(id):
 
 @app.route("/")
 def index():
+    print(stories)
     return render_template('homepage.html',
     watchlist=user_watchlist,
     stories=list(stories))
