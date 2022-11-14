@@ -22,7 +22,9 @@
     <h2>{{ title }}</h2>
     <h3>By {{ user }}</h3>
     <h3>Last edited by {{ recentuser }}</h3>
-    <p>{{ content }}</p>
+    <div class="story">
+        <p>{{ content }}</p>
+    </div>
     
     {% if session['logged_in'] %}
         {% if edited %}

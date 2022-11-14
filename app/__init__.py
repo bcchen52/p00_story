@@ -332,14 +332,11 @@ def edit():
 
         db.commit() 
         
-        
-
-
-
         #print(edited_currentuser)
+        params = (id, user_id, str(title), str(content), recentuser_id)
 
-        command = f'''replace into story values({id},{user_id},"{title}","{content}",{recentuser_id});'''
-        c.execute(command)   
+        command = f'''replace into story values(?,?,?,?,?);'''
+        c.execute(command,params)   
 
         db.commit() 
         db.close()

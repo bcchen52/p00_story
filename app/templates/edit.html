@@ -30,7 +30,9 @@
 {% block body %}
 {% if not new %}
     <h1>{{ title }}</h1>
-    <p>{{ content }}</p>
+    <div class="story">
+        <p>{{ content }}</p>
+    </div>
     
     <form action="/edit" method="POST">
         <br>
