@@ -107,3 +107,8 @@ brianC -- 2022-11-13 4:15
 --------------------------------------------------------------
 Made stories dropdown visible on all pages, error exceptions for creating new stories.
 ==============================================================
+
+brianC -- 2022-11-13 19:35
+--------------------------------------------------------------
+Changed links so entire div is clickable and hoverable, incorporated last user who edited into story. 
+==============================================================

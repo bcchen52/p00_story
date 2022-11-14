@@ -10,18 +10,22 @@
 
 {% block story_dropdown %}
     {% for x in stories %}
-    <a href="/story/{{x}}">{{ x }}</a>
+    <a href="/story/{{x}}"><div class="btn">{{ x }}</div></a>
     {% endfor %}
 {% endblock %}
 
 {% block body %}
     <h2>{{ title }}</h2>
-    {{ content }}
-
+    <h3>By {{ user }}</h3>
+    <h3>Last edited by {{ recentuser }}</h3>
+    <p>{{ content }}</p>
+    
+    {% if session['logged_in'] %}
     <form action="/edit" method="GET">
         <input type="hidden" name="title" id="title" value="{{ title }}">
         <input type="submit" value="Edit">
     </form>
+    {% endif %}
 
 {% endblock %} 
 

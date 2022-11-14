@@ -27,10 +27,10 @@ c.execute(command)
 command = "create table user(id int, username text, password text);"      
 c.execute(command)   
 
-command = "create table story(id int primary key, user_id int, title text, content text);"      
+command = "create table story(id int primary key, user_id int, title text, content text, recentuser_id int);"      
 c.execute(command)   
 
-command = f'''insert into story values(0, 1,"hello","welcome back to my asmr");''' 
+command = f'''insert into story values(0, 0,"hello","welcome back to my asmr",0);''' 
 c.execute(command)   
 
 command = f'''insert into user values(0, "b", "123");''' 
@@ -70,6 +70,17 @@ def update_stories():
     db.close()
 
 update_stories()
+
+#we use user ids, and we often need to get the associated username
+def grab_username(id):
+    db = sqlite3.connect(DB_FILE) 
+    c = db.cursor() 
+    command = f"select username from user where id = {id};"
+    c.execute(command)
+    grab_user = c.fetchone()
+    db.close()
+
+    return(grab_user[0])
     
 
 
@@ -167,6 +178,7 @@ def story(title):
         user_id = story[1]
         title = story[2]
         content = story[3]
+        recentuser_id = story[4]
 
         print(content)
 
@@ -175,6 +187,8 @@ def story(title):
         return render_template('story.html',
             title=title,
             content=content,
+            user=grab_username(user_id),
+            recentuser=grab_username(recentuser_id),
             stories=list(stories)
             )
 
@@ -230,7 +244,12 @@ def edit():
             id = story[0]
             user_id = story[1]
             oldcontent = story[3]
+            user = session['username']
 
+            command = f'''select id from user where username = "{user}";'''
+            c.execute(command)   
+            grab_recentuser_id = c.fetchone()
+            recentuser_id = grab_recentuser_id[0]
             oldcontent += content
             content = oldcontent
             #can add spot for user id
@@ -244,6 +263,7 @@ def edit():
                 c.execute(command)   
                 user = c.fetchone()
                 user_id = user[0]
+                recentuser_id = user_id
                 id = len(stories)
 
             else:
@@ -255,7 +275,7 @@ def edit():
                 )
 
 
-        command = f'''replace into story values({id},{user_id},"{title}","{content}");'''
+        command = f'''replace into story values({id},{user_id},"{title}","{content}",{recentuser_id});'''
         c.execute(command)   
 
         db.commit() 

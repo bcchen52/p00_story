@@ -14,24 +14,30 @@
         {% endblock %}
         </title>
         <div class="flex-container">
-            <div class = "item"><a href='/'>Homepage</a></div>
+            <div class = "item"><a href='/'><div class = "btn">Homepage</div></a></div>
 
             <div class="item">
+
                 <div class="dropdown">
-                    <button type="button" class="block">Stories</button>
+                    
+                    <div class="btn">
+                    Stories
+                    </div>
+      
                     <div class="dropdown-content">
                     {% block story_dropdown %}
                     {% endblock %}
                     </div>
                 </div>
+
             </div>
 
             {% if session['logged_in'] %}
-            <div class = "item"><a href='/logout'>Logout</a></div>
-            <div class = "item"><a href='/edit'>New Story</a></div>
+            <div class = "item"><a href='/logout'><div class = "btn">Logout</div></a></div>
+            <div class = "item"><a href='/edit'><div class = "btn">New Story</div></a></div>
             {% else %}
-            <div class = "item"><a href='/login'>Login</a></div>
-            <div class = "item"><a href='/signup'>Register</a></div>
+            <div class = "item"><a href='/login'><div class = "btn">Login</div></a></div>
+            <div class = "item"><a href='/signup'><div class = "btn">Register</div></a></div>
 
             {% endif %}
         </div> 
