@@ -19,7 +19,7 @@
 
 ## Website Description
 * Do you like stories?? Do you like not being able to fix your mistakes?
-* Our website is perfect! You can write stories and add to others' stories, but you can only edit each once.
+* Our website is perfect! You can write stories and add to others' stories, but you can only edit each once per user.
 
 ## HOW TO LAUNCH
 1. Clone the REPO in terminal
