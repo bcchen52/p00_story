@@ -11,7 +11,11 @@
 
 ## Website Description
 * Do you like stories?? Do you like not being able to fix your mistakes?
-* Our website is perfect! You can write stories and add to others' stories, but you can only edit each once per user.
+* Our website has the perfect QUEST(s) for YOU! 
+* When you log in, you can create and edit stories(each user can only edit a story once, and when you edit you only see the contents of the update prior to yours)
+* Registering an account is free. 
+* If you're a loser and you don't log in, you can only read stories(boo!!!)
+
 
 ## HOW TO LAUNCH
 1. Clone the REPO in terminal
