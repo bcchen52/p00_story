@@ -310,6 +310,8 @@ def edit():
             content = story[3]
             recent_user = grab_username(story[4])
             recent_content = story[5]
+            original_date = story[6]
+            recent_date = story[7]
 
             db.close()
 
@@ -319,6 +321,8 @@ def edit():
                 user=user,
                 recent_user=recent_user,
                 content=recent_content,
+                original_date=original_date,
+                recent_date=recent_date,
                 stories=list(stories)
                 )
 
@@ -344,7 +348,7 @@ def edit():
 
             id = story[0]
             user_id = story[1]
-            oldcontent = story[3] + "\n"
+            oldcontent = story[3]
             original_date = story[6]
             recent_date = get_time()
 
@@ -354,8 +358,9 @@ def edit():
             c.execute(command)   
             grab_recentuser_id = c.fetchone()
             recentuser_id = grab_recentuser_id[0]
+            oldcontent += "\n"
             oldcontent += content
-            content = oldcontent + "\n"
+            content = oldcontent
             #can add spot for user id
         else: 
             command = f'''select * from story where title = "{title}";'''

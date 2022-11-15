@@ -30,8 +30,8 @@
 {% block body %}
 {% if not new %}
     <h1>{{ title }}</h1>
-    <h3>By {{ user }}</h3>
-    <h3>Last edited by {{ recent_user }}. This is what {{ recent_user }} added...</h3>
+    <h3>By {{ user }} on {{ original_date }}</h3>
+    <h3>Last edited by {{ recent_user }} on {{ recent_date }}. This is what {{ recent_user }} added...</h3>
     <div class="story">
         <p>{{ content }}</p>
     </div>
