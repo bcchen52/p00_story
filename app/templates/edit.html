@@ -30,6 +30,8 @@
 {% block body %}
 {% if not new %}
     <h1>{{ title }}</h1>
+    <h3>By {{ user }}</h3>
+    <h3>Last edited by {{ recent_user }}. This is what {{ recent_user }} added...</h3>
     <div class="story">
         <p>{{ content }}</p>
     </div>
@@ -39,7 +41,7 @@
         <label for="content"><h3>Add to to the story below...</h3></label>
         <textarea class="content" name="content" placeholder="Type here..." cols="100" rows="20" required></textarea>
         <input type="hidden" name="new" id="new" value="False">
-        <input type="hidden" name="title" id="title" value="{{ title }}">
+        <input type="hidden" name="title" id="title" value="{{ title }}" maxlength="20">
         <br>
         <input type="submit" value="Commit Changes">
     </form>
@@ -49,7 +51,7 @@
     <h3>The name of your story must be UNIQUE</h3>
     <form action="/edit" method="POST">
         <label for="title"><h3>Name your story...</h3></label>
-        <textarea class="content" name="title" placeholder="Title here..." cols="100" rows="1" required></textarea>
+        <textarea class="content" name="title" placeholder="Title here..." cols="100" rows="1" required maxlength="25"></textarea>
         <label for="content"><h3>Start your story below...</h3></label>
         <textarea class="content" name="content" placeholder="Type here..." cols="100" rows="20" required></textarea>
         <input type="hidden" name="new" id="new" value="True">
