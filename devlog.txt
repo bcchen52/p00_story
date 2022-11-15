@@ -124,3 +124,16 @@ brianC -- 2022-11-13 22:30
 --------------------------------------------------------------
 Finalized CSS and html formatting.
 ==============================================================
+
+weichenL -- 2022-11-14 20:00
+--------------------------------------------------------------
+Uploaded and edited initial and final design_wiki.pdf.
+Final version includes specific sqlite tables and actual site map, which we initially did wrong. 
+==============================================================
+
+brianC -- 2022-11-15 0:52
+--------------------------------------------------------------
+Uploaded final design.pdf to reflect current sqlite tables and current sitemap as we have different links and tables than we initially thought.
+Added columns to story table to include timestamps. When editing stories, only the last edit is visible.
+Initialized and prepopulated database. 
+==============================================================

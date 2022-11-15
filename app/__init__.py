@@ -4,12 +4,12 @@ AEIOU : Brian Chen, Weichen Liu, Vansh Saboo
 '''
 
 from flask import Flask, render_template, request, session, redirect, url_for
-import os, sqlite3
+import secrets, sqlite3
 import datetime
 
 app = Flask(__name__)
 
-app.secret_key = os.urandom(12)
+app.secret_key = secrets.token_bytes(12)
 
 currentusers = {}
 stories = set()
@@ -35,45 +35,6 @@ c.execute(command)
 
 command = "create table story(id int primary key, user_id int, title text, content text, recentuser_id int, recent_content text, user_date text, recent_date text);"      
 c.execute(command)     
-
-content = '''
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Imperdiet dui accumsan sit amet. Aliquet nec ullamcorper sit amet risus nullam eget felis. Scelerisque fermentum dui faucibus in ornare quam viverra orci. Turpis egestas maecenas pharetra convallis. Feugiat nibh sed pulvinar proin. Malesuada fames ac turpis egestas sed tempus. Proin libero nunc consequat interdum varius sit amet. Convallis convallis tellus id interdum velit laoreet id donec ultrices. Vestibulum lorem sed risus ultricies tristique. Pharetra diam sit amet nisl suscipit adipiscing bibendum est.
-
-Pellentesque habitant morbi tristique senectus et netus et. Amet luctus venenatis lectus magna fringilla. Amet venenatis urna cursus eget nunc scelerisque viverra mauris in. Vestibulum rhoncus est pellentesque elit ullamcorper dignissim cras. Aenean sed adipiscing diam donec adipiscing tristique risus nec. Nunc sed id semper risus in hendrerit gravida rutrum. Ultrices dui sapien eget mi proin sed. Aliquam malesuada bibendum arcu vitae elementum curabitur vitae nunc. Adipiscing at in tellus integer feugiat scelerisque varius morbi. Molestie a iaculis at erat pellentesque adipiscing. Sem viverra aliquet eget sit amet tellus cras. Elementum facilisis leo vel fringilla est ullamcorper. Sit amet massa vitae tortor condimentum lacinia quis. Cursus vitae congue mauris rhoncus aenean vel elit. Mi in nulla posuere sollicitudin. Tempus urna et pharetra pharetra massa massa ultricies mi. Mauris augue neque gravida in fermentum et sollicitudin ac.
-
-Duis at tellus at urna condimentum. Consectetur libero id faucibus nisl. Consequat interdum varius sit amet mattis vulputate enim nulla aliquet. Leo a diam sollicitudin tempor. Metus dictum at tempor commodo ullamcorper a. Egestas purus viverra accumsan in nisl nisi scelerisque eu. Massa vitae tortor condimentum lacinia quis vel eros. Purus sit amet volutpat consequat. Vitae et leo duis ut diam quam nulla. Quam vulputate dignissim suspendisse in est ante in nibh. Aliquam sem et tortor consequat id porta nibh. Amet dictum sit amet justo donec. Egestas egestas fringilla phasellus faucibus scelerisque. Sit amet facilisis magna etiam tempor orci eu lobortis elementum. Nunc sed augue lacus viverra vitae congue eu consequat ac. Fames ac turpis egestas sed tempus urna. Mauris augue neque gravida in fermentum et sollicitudin. Urna id volutpat lacus laoreet non curabitur.
-
-Sollicitudin nibh sit amet commodo nulla facilisi. Quis eleifend quam adipiscing vitae proin sagittis nisl. Enim nunc faucibus a pellentesque sit amet porttitor eget. Id diam vel quam elementum pulvinar etiam non quam. Sed tempus urna et pharetra pharetra massa massa. Semper viverra nam libero justo. Tempus iaculis urna id volutpat lacus laoreet non curabitur. Facilisis mauris sit amet massa vitae tortor condimentum lacinia quis. Mattis rhoncus urna neque viverra justo. Habitant morbi tristique senectus et netus et malesuada fames. Eu scelerisque felis imperdiet proin fermentum leo vel orci porta. Morbi tempus iaculis urna id volutpat lacus laoreet non curabitur. Feugiat in ante metus dictum at tempor commodo ullamcorper. Habitant morbi tristique senectus et netus. Nulla at volutpat diam ut venenatis tellus in metus vulputate. At tellus at urna condimentum mattis pellentesque id nibh tortor. Tincidunt lobortis feugiat vivamus at. Mi eget mauris pharetra et.
-
-Maecenas ultricies mi eget mauris pharetra et ultrices neque. Morbi leo urna molestie at elementum. In pellentesque massa placerat duis ultricies. Eget nunc scelerisque viverra mauris in aliquam sem fringilla ut. Habitant morbi tristique senectus et. Tempor commodo ullamcorper a lacus vestibulum. Lectus mauris ultrices eros in cursus turpis massa tincidunt. Diam donec adipiscing tristique risus nec. Hendrerit dolor magna eget est lorem ipsum dolor. Iaculis urna id volutpat lacus laoreet non curabitur gravida arcu. Sapien nec sagittis aliquam malesuada bibendum arcu vitae elementum. Commodo odio aenean sed adipiscing diam donec adipiscing.
-'''
-#command = f'''insert into story values(0, 0,"LoL Jungle Guide","{content}",0,"{content}","1955-10-13 01:02","1955-10-13 01:02");''' 
-#c.execute(command)   
-
-
-content = '''
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sed velit dignissim sodales ut eu sem integer vitae justo. Turpis in eu mi bibendum neque egestas. Est pellentesque elit ullamcorper dignissim cras tincidunt lobortis feugiat vivamus. Penatibus et magnis dis parturient montes nascetur. Lobortis elementum nibh tellus molestie nunc non. Cras adipiscing enim eu turpis egestas pretium aenean pharetra. Dignissim sodales ut eu sem. Scelerisque eu ultrices vitae auctor eu augue ut. Lorem sed risus ultricies tristique nulla aliquet enim tortor at. Sit amet consectetur adipiscing elit duis tristique sollicitudin nibh. Tellus mauris a diam maecenas sed enim. Neque aliquam vestibulum morbi blandit cursus. Enim blandit volutpat maecenas volutpat blandit aliquam etiam erat. Placerat orci nulla pellentesque dignissim enim sit amet venenatis.
-
-Nisi est sit amet facilisis magna etiam. Arcu ac tortor dignissim convallis aenean et tortor at risus. Feugiat nisl pretium fusce id velit ut. In tellus integer feugiat scelerisque varius morbi enim nunc. Malesuada fames ac turpis egestas sed. Vestibulum lectus mauris ultrices eros in cursus. In pellentesque massa placerat duis ultricies lacus sed. Duis at consectetur lorem donec massa sapien faucibus et. Faucibus purus in massa tempor nec feugiat nisl pretium. Mauris commodo quis imperdiet massa tincidunt nunc. Amet porttitor eget dolor morbi non arcu. Urna condimentum mattis pellentesque id.
-
-Nisi porta lorem mollis aliquam ut porttitor. Ut enim blandit volutpat maecenas volutpat. Sapien pellentesque habitant morbi tristique. Euismod nisi porta lorem mollis aliquam ut porttitor leo a. Orci phasellus egestas tellus rutrum tellus pellentesque eu tincidunt tortor. Venenatis urna cursus eget nunc scelerisque viverra mauris in aliquam. Massa massa ultricies mi quis hendrerit dolor magna eget. At in tellus integer feugiat scelerisque varius morbi enim. Eget magna fermentum iaculis eu non. Eu nisl nunc mi ipsum faucibus. Tristique magna sit amet purus gravida quis blandit turpis cursus. Magna eget est lorem ipsum dolor sit amet. Imperdiet proin fermentum leo vel orci porta non pulvinar. Enim diam vulputate ut pharetra. Morbi tincidunt ornare massa eget. Est ullamcorper eget nulla facilisi etiam. Eget nulla facilisi etiam dignissim diam quis enim lobortis scelerisque. Amet dictum sit amet justo. Pharetra convallis posuere morbi leo urna molestie at. Potenti nullam ac tortor vitae purus faucibus ornare suspendisse sed.
-
-Vulputate odio ut enim blandit volutpat maecenas volutpat. Habitant morbi tristique senectus et netus et malesuada fames. Cras sed felis eget velit aliquet. Nunc sed augue lacus viverra vitae congue eu. Netus et malesuada fames ac turpis egestas. Ac tortor vitae purus faucibus ornare suspendisse sed nisi. Quis viverra nibh cras pulvinar mattis. Integer vitae justo eget magna fermentum. Integer quis auctor elit sed vulputate mi sit amet mauris. Duis at consectetur lorem donec massa sapien faucibus et molestie. At quis risus sed vulputate odio ut enim blandit volutpat. Odio aenean sed adipiscing diam. Odio ut sem nulla pharetra diam. Sed faucibus turpis in eu mi. Senectus et netus et malesuada fames. In vitae turpis massa sed elementum tempus egestas sed. In egestas erat imperdiet sed euismod nisi porta lorem mollis.
-'''
-
-#command = f'''insert into story values(1, 1,"Apples and evolution","{content}",1,"{content}","1462-02-29 09:25","1462-02-29 09:25");''' 
-#c.execute(command)  
-
-#command = f'''insert into user values(0, "Brian", "123","0,");''' 
-#c.execute(command) 
-
-#command = f'''insert into user values(1, "Weichen", "123","1,");''' 
-#c.execute(command) 
-
-
-
-#update_users()
-#update_stories()
 
 db.commit() 
 db.close()
@@ -152,14 +113,61 @@ def grab_username(id):
     db.close()
 
     return(grab_user[0])
-    
+
+
+db = sqlite3.connect(DB_FILE) 
+c = db.cursor()   
+
+content = '''
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Imperdiet dui accumsan sit amet. Aliquet nec ullamcorper sit amet risus nullam eget felis. Scelerisque fermentum dui faucibus in ornare quam viverra orci. Turpis egestas maecenas pharetra convallis. Feugiat nibh sed pulvinar proin. Malesuada fames ac turpis egestas sed tempus. Proin libero nunc consequat interdum varius sit amet. Convallis convallis tellus id interdum velit laoreet id donec ultrices. Vestibulum lorem sed risus ultricies tristique. Pharetra diam sit amet nisl suscipit adipiscing bibendum est.
+
+Pellentesque habitant morbi tristique senectus et netus et. Amet luctus venenatis lectus magna fringilla. Amet venenatis urna cursus eget nunc scelerisque viverra mauris in. Vestibulum rhoncus est pellentesque elit ullamcorper dignissim cras. Aenean sed adipiscing diam donec adipiscing tristique risus nec. Nunc sed id semper risus in hendrerit gravida rutrum. Ultrices dui sapien eget mi proin sed. Aliquam malesuada bibendum arcu vitae elementum curabitur vitae nunc. Adipiscing at in tellus integer feugiat scelerisque varius morbi. Molestie a iaculis at erat pellentesque adipiscing. Sem viverra aliquet eget sit amet tellus cras. Elementum facilisis leo vel fringilla est ullamcorper. Sit amet massa vitae tortor condimentum lacinia quis. Cursus vitae congue mauris rhoncus aenean vel elit. Mi in nulla posuere sollicitudin. Tempus urna et pharetra pharetra massa massa ultricies mi. Mauris augue neque gravida in fermentum et sollicitudin ac.
+
+Duis at tellus at urna condimentum. Consectetur libero id faucibus nisl. Consequat interdum varius sit amet mattis vulputate enim nulla aliquet. Leo a diam sollicitudin tempor. Metus dictum at tempor commodo ullamcorper a. Egestas purus viverra accumsan in nisl nisi scelerisque eu. Massa vitae tortor condimentum lacinia quis vel eros. Purus sit amet volutpat consequat. Vitae et leo duis ut diam quam nulla. Quam vulputate dignissim suspendisse in est ante in nibh. Aliquam sem et tortor consequat id porta nibh. Amet dictum sit amet justo donec. Egestas egestas fringilla phasellus faucibus scelerisque. Sit amet facilisis magna etiam tempor orci eu lobortis elementum. Nunc sed augue lacus viverra vitae congue eu consequat ac. Fames ac turpis egestas sed tempus urna. Mauris augue neque gravida in fermentum et sollicitudin. Urna id volutpat lacus laoreet non curabitur.
+
+Sollicitudin nibh sit amet commodo nulla facilisi. Quis eleifend quam adipiscing vitae proin sagittis nisl. Enim nunc faucibus a pellentesque sit amet porttitor eget. Id diam vel quam elementum pulvinar etiam non quam. Sed tempus urna et pharetra pharetra massa massa. Semper viverra nam libero justo. Tempus iaculis urna id volutpat lacus laoreet non curabitur. Facilisis mauris sit amet massa vitae tortor condimentum lacinia quis. Mattis rhoncus urna neque viverra justo. Habitant morbi tristique senectus et netus et malesuada fames. Eu scelerisque felis imperdiet proin fermentum leo vel orci porta. Morbi tempus iaculis urna id volutpat lacus laoreet non curabitur. Feugiat in ante metus dictum at tempor commodo ullamcorper. Habitant morbi tristique senectus et netus. Nulla at volutpat diam ut venenatis tellus in metus vulputate. At tellus at urna condimentum mattis pellentesque id nibh tortor. Tincidunt lobortis feugiat vivamus at. Mi eget mauris pharetra et.
+
+Maecenas ultricies mi eget mauris pharetra et ultrices neque. Morbi leo urna molestie at elementum. In pellentesque massa placerat duis ultricies. Eget nunc scelerisque viverra mauris in aliquam sem fringilla ut. Habitant morbi tristique senectus et. Tempor commodo ullamcorper a lacus vestibulum. Lectus mauris ultrices eros in cursus turpis massa tincidunt. Diam donec adipiscing tristique risus nec. Hendrerit dolor magna eget est lorem ipsum dolor. Iaculis urna id volutpat lacus laoreet non curabitur gravida arcu. Sapien nec sagittis aliquam malesuada bibendum arcu vitae elementum. Commodo odio aenean sed adipiscing diam donec adipiscing.
+'''
+command = f'''insert into story values(0, 0,"LoL Jungle Guide","{content}",0,"{content}","1955-10-13 01:02","1955-10-13 01:02");''' 
+c.execute(command)   
+
+content = '''
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sed velit dignissim sodales ut eu sem integer vitae justo. Turpis in eu mi bibendum neque egestas. Est pellentesque elit ullamcorper dignissim cras tincidunt lobortis feugiat vivamus. Penatibus et magnis dis parturient montes nascetur. Lobortis elementum nibh tellus molestie nunc non. Cras adipiscing enim eu turpis egestas pretium aenean pharetra. Dignissim sodales ut eu sem. Scelerisque eu ultrices vitae auctor eu augue ut. Lorem sed risus ultricies tristique nulla aliquet enim tortor at. Sit amet consectetur adipiscing elit duis tristique sollicitudin nibh. Tellus mauris a diam maecenas sed enim. Neque aliquam vestibulum morbi blandit cursus. Enim blandit volutpat maecenas volutpat blandit aliquam etiam erat. Placerat orci nulla pellentesque dignissim enim sit amet venenatis.
+
+Nisi est sit amet facilisis magna etiam. Arcu ac tortor dignissim convallis aenean et tortor at risus. Feugiat nisl pretium fusce id velit ut. In tellus integer feugiat scelerisque varius morbi enim nunc. Malesuada fames ac turpis egestas sed. Vestibulum lectus mauris ultrices eros in cursus. In pellentesque massa placerat duis ultricies lacus sed. Duis at consectetur lorem donec massa sapien faucibus et. Faucibus purus in massa tempor nec feugiat nisl pretium. Mauris commodo quis imperdiet massa tincidunt nunc. Amet porttitor eget dolor morbi non arcu. Urna condimentum mattis pellentesque id.
+
+Nisi porta lorem mollis aliquam ut porttitor. Ut enim blandit volutpat maecenas volutpat. Sapien pellentesque habitant morbi tristique. Euismod nisi porta lorem mollis aliquam ut porttitor leo a. Orci phasellus egestas tellus rutrum tellus pellentesque eu tincidunt tortor. Venenatis urna cursus eget nunc scelerisque viverra mauris in aliquam. Massa massa ultricies mi quis hendrerit dolor magna eget. At in tellus integer feugiat scelerisque varius morbi enim. Eget magna fermentum iaculis eu non. Eu nisl nunc mi ipsum faucibus. Tristique magna sit amet purus gravida quis blandit turpis cursus. Magna eget est lorem ipsum dolor sit amet. Imperdiet proin fermentum leo vel orci porta non pulvinar. Enim diam vulputate ut pharetra. Morbi tincidunt ornare massa eget. Est ullamcorper eget nulla facilisi etiam. Eget nulla facilisi etiam dignissim diam quis enim lobortis scelerisque. Amet dictum sit amet justo. Pharetra convallis posuere morbi leo urna molestie at. Potenti nullam ac tortor vitae purus faucibus ornare suspendisse sed.
+
+Vulputate odio ut enim blandit volutpat maecenas volutpat. Habitant morbi tristique senectus et netus et malesuada fames. Cras sed felis eget velit aliquet. Nunc sed augue lacus viverra vitae congue eu. Netus et malesuada fames ac turpis egestas. Ac tortor vitae purus faucibus ornare suspendisse sed nisi. Quis viverra nibh cras pulvinar mattis. Integer vitae justo eget magna fermentum. Integer quis auctor elit sed vulputate mi sit amet mauris. Duis at consectetur lorem donec massa sapien faucibus et molestie. At quis risus sed vulputate odio ut enim blandit volutpat. Odio aenean sed adipiscing diam. Odio ut sem nulla pharetra diam. Sed faucibus turpis in eu mi. Senectus et netus et malesuada fames. In vitae turpis massa sed elementum tempus egestas sed. In egestas erat imperdiet sed euismod nisi porta lorem mollis.
+'''
+content2 = '''
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+'''
+
+command = f'''insert into story values(1, 1,"Apples and evolution","{content + content2}",2,"{content2}","1462-02-29 09:25","1762-07-12 06:11");''' 
+c.execute(command)  
+
+command = f'''insert into user values(0, "Brian", "123","0,");''' 
+c.execute(command) 
+
+command = f'''insert into user values(1, "Weichen", "123","1,");''' 
+c.execute(command) 
+
+command = f'''insert into user values(2, "Vansh", "123","1,");''' 
+c.execute(command) 
+
+db.commit() 
+db.close()
+
+update_users()
+update_stories()
 
 @app.route("/")
 def index():
     return render_template('homepage.html',
     watchlist=user_watchlist,
     stories=list(stories))
-    
 
 
 @app.route("/login", methods=['GET', 'POST'])
@@ -336,7 +344,7 @@ def edit():
 
             id = story[0]
             user_id = story[1]
-            oldcontent = story[3]
+            oldcontent = story[3] + "\n"
             original_date = story[6]
             recent_date = get_time()
 
@@ -347,7 +355,7 @@ def edit():
             grab_recentuser_id = c.fetchone()
             recentuser_id = grab_recentuser_id[0]
             oldcontent += content
-            content = oldcontent
+            content = oldcontent + "\n"
             #can add spot for user id
         else: 
             command = f'''select * from story where title = "{title}";'''

@@ -2,8 +2,20 @@
 
 ## ROSTER
 * PROJECT MANAGER / DEVO 0 : Brian Chen
+    - layout.html and homepage.html and CSS
+    - Display story flask method and story.html; story table
+    - Edit story flask method and edit.html; user interaction with edited stories
+    - design.pdf finalizations
 * DEVO 1 : Weichen Liu
+    - CSS for layout
+    - login.html and login Flask method
+    - design_wiki.pdf finalizations
+    - requirements.txt and Readme
 * DEVO 2 : Vansh Saboo
+    - Register.html and register Flask method
+    - user table and user creation in sqlite3
+    - requirements.txt and Readme
+
 
 ## Website Description
 * Do you like stories?? Do you like not being able to fix your mistakes?
